@@ -1,0 +1,8 @@
+{
+  "name": "org-postgresql-wire",
+  "private": true,
+  "description": "org-postgresql-wire -- transitive npm dep of kotoba-lang/arrangement (materialize target, via multiformats.core's @noble/hashes/sha2.js use) needed to load arrangement.core (pulled in transitively via kotobase-query) under nbb. Mirrors kotobase-query's own package.json note verbatim: io-multiformats' own package.json also declares a \"hashes\": \"2.0.1\" dependency, but nothing in its source actually requires the npm \"hashes\" package and no matching npm registry version exists -- that entry is vestigial/broken upstream and deliberately NOT mirrored here.",
+  "dependencies": {
+    "@noble/hashes": "^1.4.0"
+  }
+}
