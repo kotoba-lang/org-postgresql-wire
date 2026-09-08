@@ -76,7 +76,7 @@
   byte) -- see that file for exactly what is and is not exercised.
   Interop with a real `psql`/`libpq`/any off-the-shelf Postgres driver
   has NOT been attempted and is NOT claimed."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kotobase.pg.sql :as sql]
             ["node:net" :as net]))
 
