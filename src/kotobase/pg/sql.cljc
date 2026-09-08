@@ -63,7 +63,7 @@
   discipline the bridge itself enforces (ADR-2607050500, no permissive
   default). `kotobase.pg.wire` threads its own caller-supplied
   `visible?` through to this namespace; it does not invent one."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kotobase.query.bridge :as bridge]))
 
 ;; ---------------------------------------------------------------------------
@@ -102,7 +102,7 @@
     {:type :number :text s :val #?(:clj (Long/parseLong s) :cljs (js/parseInt s 10))}
 
     (re-matches #"[A-Za-z_][A-Za-z0-9_]*" s)
-    (let [lower (str/lower-case s)]
+    (let [lower (str/lower s)]
       (if (contains? keywords lower)
         {:type :keyword :text s :val lower}
         {:type :ident :text s :val s}))
@@ -139,7 +139,7 @@
 (defn- expect-keyword [tokens word]
   (let [tok (first tokens)]
     (when-not (and tok (kw? tok word))
-      (syntax-error! (str "expected " (str/upper-case word)
+      (syntax-error! (str "expected " (str/upper word)
                            (if tok (str ", found " (pr-str (:text tok))) ", found end of input"))
                       {:expected word :found tok}))
     (rest tokens)))
