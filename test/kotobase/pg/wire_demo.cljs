@@ -46,7 +46,7 @@
 (ns kotobase.pg.wire-demo
   (:require ["node:child_process" :as cp]
             ["node:net" :as net]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [promesa.core :as p]
             [kotobase.pg.wire :as w]))
 
