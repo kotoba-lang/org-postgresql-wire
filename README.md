@@ -149,7 +149,7 @@ real-TCP transports (ADR-2607161817, ADR-2607162135).
 | Message framing (startup packet, tagged messages, `SSLRequest`/`StartupMessage` classification) | Unit tests, `wire_test.cljs` — 19 tests covering every message builder/decoder round-trip, `NULL`-vs-empty-string distinction, mixed value-type `DataRow` encoding | High |
 | `kotobase.pg.sql` parser: valid queries, and rejection of every named out-of-scope construct | Unit tests, `sql_test.cljc` — 28 tests / 47 assertions, including explicit rejection tests per out-of-scope `:feature` | High |
 | `kotobase.pg.sql` → `kotobase-query` translation + real execution (joins/aggregates NOT exercised — out of v0.1 scope) | Unit tests against a real materialized `kotobase.local` store, including a numeric-literal `WHERE`, a `visible?` redaction test, and a column-missing-on-some-rows test | High |
-| Full handshake (`SSLRequest` → deny → `StartupMessage` → `AuthenticationOk`/`ParameterStatus`/`BackendKeyData`/`ReadyForQuery`) + simple-query round trip, END TO END, ACROSS TWO REAL OS PROCESSES, OVER A REAL SOCKET | `test/kotobase/pg/wire_demo.cljs`, **16/16 checks passed** — this is the strongest evidence in this repo | High, for THIS repo's hand-rolled client talking to THIS repo's server |
+| Full handshake (`SSLRequest` → deny → `StartupMessage` → `AuthenticationOk`/`ParameterStatus`/`BackendKeyData`/`ReadyForQuery`) + simple-query round trip, END TO END, ACROSS TWO REAL OS PROCESSES, OVER A REAL SOCKET | `test/kotobase/pg/wire_demo.cljk`, **16/16 checks passed** — this is the strongest evidence in this repo | High, for THIS repo's hand-rolled client talking to THIS repo's server |
 | An out-of-scope query (`SELECT COUNT(*) FROM users`) producing a real `ErrorResponse` (not a mis-execution or dropped connection), AND the connection surviving to serve a further query afterward | Exercised live in `wire_demo.cljs` (checks 13–16) | High |
 | Interop with a real `psql`, `libpq`, or any off-the-shelf Postgres client/driver | **Not tested. Not claimed.** | None |
 | Resistance to a real adversary (malformed-input fuzzing, resource-exhaustion, protocol-downgrade) | **Not tested. Not claimed.** | None |
@@ -160,14 +160,14 @@ real-TCP transports (ADR-2607161817, ADR-2607162135).
 
 ```bash
 nbb --classpath "src:test:.deps/kotobase-query/src:.deps/kotobase/src:.deps/arrangement/src:.deps/prolly-tree/src:.deps/io-ipld/src:.deps/io-multiformats/src:.deps/org-ietf-cbor/src" \
-  bin/pg_node.cljs listen --port 6543
+  bin/pg_node.cljk listen --port 6543
 # separate terminal / process -- no general-purpose CLI Postgres client
 # ships here (see kotobase.pg.wire's own docstring: the client this repo
-# provides is demo/test-only, in test/kotobase/pg/wire_demo.cljs); use
+# provides is demo/test-only, in test/kotobase/pg/wire_demo.cljk); use
 # that file as a worked example of driving it, or the REPL API directly.
 ```
 
-The pre-seeded fixture store (`bin/pg_node.cljs`) has a `users`
+The pre-seeded fixture store (`bin/pg_node.cljk`) has a `users`
 collection with `name`/`role`/`dept-key`/`age` — try
 `SELECT name, role FROM users WHERE role = 'admin'` against it.
 
@@ -189,10 +189,10 @@ npm install
 CP="src:test:.deps/kotobase-query/src:.deps/kotobase/src:.deps/arrangement/src:.deps/prolly-tree/src:.deps/io-ipld/src:.deps/io-multiformats/src:.deps/org-ietf-cbor/src"
 
 # Pure .cljc SQL suite + .cljs-only wire-framing/message unit tests (fast, no sockets)
-nbb --classpath "$CP" bin/run_tests.cljs
+nbb --classpath "$CP" bin/run_tests.cljk
 
 # The real cross-process Postgres-wire demo (slower -- spawns a second OS process)
-nbb --classpath "$CP" test/kotobase/pg/wire_demo.cljs
+nbb --classpath "$CP" test/kotobase/pg/wire_demo.cljk
 ```
 
 Each `.deps/<name>` should be checked out at the SHA pinned in
@@ -203,7 +203,7 @@ every one, see `.github/workflows/ci.yml`.
 The `:test` alias in `deps.edn` is the JVM **compat** suite for the pure
 `.cljc` core (`kotobase.pg.sql`) only (`clojure -M:test`, via
 `tools.deps` transitive git-dep resolution) — it never loads anything
-under `src/kotobase/pg/wire.cljs` (`.cljs`-only, cannot run on the JVM
+under `src/kotobase/pg/wire.cljk` (`.cljs`-only, cannot run on the JVM
 at all).
 
 ## Scope guards (read before extending)

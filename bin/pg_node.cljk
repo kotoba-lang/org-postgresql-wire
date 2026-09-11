@@ -5,11 +5,11 @@
 ;; query), no real authentication (see kotobase.pg.wire's own docstring
 ;; -- every StartupMessage is unconditionally answered AuthenticationOk).
 ;; Good for exercising the wire protocol by hand or from the E2E demo
-;; (test/kotobase/pg/wire_demo.cljs, which spawns this file as a real
+;; (test/kotobase/pg/wire_demo.cljk, which spawns this file as a real
 ;; second OS process) -- NOT for running on the open internet.
 ;;
 ;; Usage:
-;;   nbb --classpath "src:test:<deps...>" bin/pg_node.cljs \
+;;   nbb --classpath "src:test:<deps...>" bin/pg_node.cljk \
 ;;     listen --port 6543
 ;;   ;; -> starts a long-running Postgres-wire server on
 ;;   ;;    127.0.0.1:<port>, serving a fresh in-memory kotobase.local

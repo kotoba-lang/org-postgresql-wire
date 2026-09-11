@@ -68,7 +68,7 @@
   See this repo's README for the authoritative, up-to-date table. In
   short: message encode/decode round-trips and the startup-code
   classifier are unit-tested with no sockets involved
-  (`kotobase.pg.wire-test`); `test/kotobase/pg/wire_demo.cljs` spawns a
+  (`kotobase.pg.wire-test`); `test/kotobase/pg/wire_demo.cljk` spawns a
   real second `nbb` OS process running this namespace as a server and
   drives it from a genuinely separate process over a real TCP socket
   with a minimal hand-rolled client (raw `StartupMessage`/`Query` bytes
@@ -83,7 +83,7 @@
 ;; ---------------------------------------------------------------------------
 ;; Byte-level primitives -- public: reused by the unit tests
 ;; (kotobase.pg.wire-test, no sockets) and by the hand-rolled test client in
-;; test/kotobase/pg/wire_demo.cljs to build requests / decode responses.
+;; test/kotobase/pg/wire_demo.cljk to build requests / decode responses.
 ;; ---------------------------------------------------------------------------
 
 (defn i32

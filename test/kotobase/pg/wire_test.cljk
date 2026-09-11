@@ -3,7 +3,7 @@
   startup-code classification -- NO sockets, NO child process. The real
   cross-process proof (a genuine second `nbb` OS process, a hand-rolled
   client over a real TCP socket) is
-  `test/kotobase/pg/wire_demo.cljs` -- see that file and this repo's
+  `test/kotobase/pg/wire_demo.cljk` -- see that file and this repo's
   README for exactly what IS and is NOT proven by each. `.cljs`-only,
   same reason as kotobase.pg.wire itself (node:net/Buffer)."
   (:require [cljs.test :refer [deftest is testing]]

@@ -18,7 +18,7 @@
  ;; namespace-load time), which pull in io-multiformats/org-ietf-cbor --
  ;; tools.deps resolves that whole chain transitively from the two direct
  ;; deps below for the JVM :test alias. The nbb primary test path has no
- ;; dependency resolver, so bin/run_tests.cljs / CI clone each transitive
+ ;; dependency resolver, so bin/run_tests.cljk / CI clone each transitive
  ;; dep by hand and list every src dir on --classpath -- see the README's
  ;; Develop/test section for the exact command.
  :deps {
@@ -32,10 +32,10 @@
         {:git/sha "bbf57df9dde5c1869182012860129a598382e088"}}
  ;; First-class runtime is nbb/cljs (repo-wide runtime priority: kotoba
  ;; wasm > clojurewasm > cljs > nbb > (jvm/bb)):
- ;;   nbb --classpath "src:test:.deps/kotobase-query/src:.deps/kotobase/src:.deps/arrangement/src:.deps/prolly-tree/src:.deps/io-ipld/src:.deps/io-multiformats/src:.deps/org-ietf-cbor/src" bin/run_tests.cljs
+ ;;   nbb --classpath "src:test:.deps/kotobase-query/src:.deps/kotobase/src:.deps/arrangement/src:.deps/prolly-tree/src:.deps/io-ipld/src:.deps/io-multiformats/src:.deps/org-ietf-cbor/src" bin/run_tests.cljk
  ;; The :test alias below is the JVM COMPAT suite for the pure `.cljc`
  ;; core (kotobase.pg.sql -- the SQL parser/translator/executor) only --
- ;; it never loads anything under src/kotobase/pg/wire.cljs (`.cljs`-only,
+ ;; it never loads anything under src/kotobase/pg/wire.cljk (`.cljs`-only,
  ;; node:net + Buffer, cannot run on the JVM at all; see that namespace's
  ;; own docstring).
  :aliases
