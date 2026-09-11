@@ -1,7 +1,7 @@
 ;; nbb test runner -- first-class runtime per repo rule (kotoba wasm >
 ;; clojurewasm > cljs > nbb > (jvm/bb)). Run from the repo root:
 ;;
-;;   nbb --classpath "src:test:<kotobase-query>/src:<kotobase>/src:<arrangement>/src:<prolly-tree>/src:<io-ipld>/src:<io-multiformats>/src:<org-ietf-cbor>/src" bin/run_tests.cljk
+;;   kbb --backend sci --classpath "src:test:<kotobase-query>/src:<kotobase>/src:<arrangement>/src:<prolly-tree>/src:<io-ipld>/src:<io-multiformats>/src:<org-ietf-cbor>/src" bin/run_tests.cljk
 ;;
 ;; See README's Develop/test section for the exact `.deps/` clone
 ;; commands; CI pins every one of them to the same SHA as deps.edn (the

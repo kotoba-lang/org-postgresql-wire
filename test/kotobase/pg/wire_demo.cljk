@@ -40,7 +40,7 @@
 ;; and exits 0 iff every check passed (else 1). Run from this repo's
 ;; root:
 ;;
-;;   nbb --classpath "src:test:.deps/kotobase-query/src:.deps/kotobase/src:.deps/arrangement/src:.deps/prolly-tree/src:.deps/io-ipld/src:.deps/io-multiformats/src:.deps/org-ietf-cbor/src" \
+;;   kbb --backend sci --classpath "src:test:.deps/kotobase-query/src:.deps/kotobase/src:.deps/arrangement/src:.deps/prolly-tree/src:.deps/io-ipld/src:.deps/io-multiformats/src:.deps/org-ietf-cbor/src" \
 ;;     test/kotobase/pg/wire_demo.cljk
 
 (ns kotobase.pg.wire-demo

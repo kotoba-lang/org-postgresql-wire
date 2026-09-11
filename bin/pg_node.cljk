@@ -9,7 +9,7 @@
 ;; second OS process) -- NOT for running on the open internet.
 ;;
 ;; Usage:
-;;   nbb --classpath "src:test:<deps...>" bin/pg_node.cljk \
+;;   kbb --backend sci --classpath "src:test:<deps...>" bin/pg_node.cljk \
 ;;     listen --port 6543
 ;;   ;; -> starts a long-running Postgres-wire server on
 ;;   ;;    127.0.0.1:<port>, serving a fresh in-memory kotobase.local
