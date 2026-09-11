@@ -2,7 +2,7 @@
 ;; pass when run, matching the verification style
 ;; ADR-2607161817/kotoba-lang/dtn's tcp_demo.cljs and
 ;; kotoba-lang/org-ietf-sftp's ssh_demo.cljs established: it spawns an
-;; actual second `nbb` OS process (bin/pg_node.cljs, this repo's own
+;; actual second `nbb` OS process (bin/pg_node.cljk, this repo's own
 ;; server binary, invoked directly via node:child_process -- found by
 ;; relative path, not $PATH), connects to its real bound TCP port from
 ;; THIS process (acting as a minimal, hand-rolled Postgres wire CLIENT --
@@ -27,7 +27,7 @@
 ;; either never arrive in a well-formed shape (this client's own
 ;; incremental reader would stall waiting for bytes that never
 ;; complete a message, timing out) or would decode to values that don't
-;; match the known fixture data in bin/pg_node.cljs.
+;; match the known fixture data in bin/pg_node.cljk.
 ;;
 ;; HONEST SCOPE: this proves this repo's OWN hand-rolled client (this
 ;; file) and OWN server (kotobase.pg.wire) correctly interoperate with
@@ -41,7 +41,7 @@
 ;; root:
 ;;
 ;;   nbb --classpath "src:test:.deps/kotobase-query/src:.deps/kotobase/src:.deps/arrangement/src:.deps/prolly-tree/src:.deps/io-ipld/src:.deps/io-multiformats/src:.deps/org-ietf-cbor/src" \
-;;     test/kotobase/pg/wire_demo.cljs
+;;     test/kotobase/pg/wire_demo.cljk
 
 (ns kotobase.pg.wire-demo
   (:require ["node:child_process" :as cp]
@@ -142,10 +142,10 @@
 
 (defn run-demo []
   (println "\n--- kotobase.pg.wire real cross-process demo ---")
-  (println "  spawning a second `nbb` OS process running bin/pg_node.cljs listen --port"
+  (println "  spawning a second `nbb` OS process running bin/pg_node.cljk listen --port"
             demo-port "...")
   (let [err-chunks (atom [])
-        child (cp/spawn "nbb" #js ["--classpath" classpath "bin/pg_node.cljs" "listen"
+        child (cp/spawn "nbb" #js ["--classpath" classpath "bin/pg_node.cljk" "listen"
                                     "--port" (str demo-port)]
                          #js {:cwd (js/process.cwd)})]
     (.on (.-stderr child) "data" (fn [chunk] (swap! err-chunks conj (str chunk))))

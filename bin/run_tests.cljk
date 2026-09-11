@@ -1,7 +1,7 @@
 ;; nbb test runner -- first-class runtime per repo rule (kotoba wasm >
 ;; clojurewasm > cljs > nbb > (jvm/bb)). Run from the repo root:
 ;;
-;;   nbb --classpath "src:test:<kotobase-query>/src:<kotobase>/src:<arrangement>/src:<prolly-tree>/src:<io-ipld>/src:<io-multiformats>/src:<org-ietf-cbor>/src" bin/run_tests.cljs
+;;   nbb --classpath "src:test:<kotobase-query>/src:<kotobase>/src:<arrangement>/src:<prolly-tree>/src:<io-ipld>/src:<io-multiformats>/src:<org-ietf-cbor>/src" bin/run_tests.cljk
 ;;
 ;; See README's Develop/test section for the exact `.deps/` clone
 ;; commands; CI pins every one of them to the same SHA as deps.edn (the
@@ -11,7 +11,7 @@
 ;; (kotobase.pg.sql-test) plus the `.cljs`-only wire-framing/message
 ;; unit tests (kotobase.pg.wire-test -- message encode/decode, no
 ;; sockets). It does NOT run the real cross-process Postgres-wire demo
-;; (test/kotobase/pg/wire_demo.cljs) -- that is a separate, slower,
+;; (test/kotobase/pg/wire_demo.cljk) -- that is a separate, slower,
 ;; spawns-a-second-OS-process step; see ci.yml, which runs it as its
 ;; own step right after this one.
 (ns run-tests
