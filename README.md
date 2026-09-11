@@ -159,7 +159,7 @@ real-TCP transports (ADR-2607161817, ADR-2607162135).
 ### Try it by hand
 
 ```bash
-nbb --classpath "src:test:.deps/kotobase-query/src:.deps/kotobase/src:.deps/arrangement/src:.deps/prolly-tree/src:.deps/io-ipld/src:.deps/io-multiformats/src:.deps/org-ietf-cbor/src" \
+kbb --backend sci --classpath "src:test:.deps/kotobase-query/src:.deps/kotobase/src:.deps/arrangement/src:.deps/prolly-tree/src:.deps/io-ipld/src:.deps/io-multiformats/src:.deps/org-ietf-cbor/src" \
   bin/pg_node.cljk listen --port 6543
 # separate terminal / process -- no general-purpose CLI Postgres client
 # ships here (see kotobase.pg.wire's own docstring: the client this repo
@@ -189,10 +189,10 @@ npm install
 CP="src:test:.deps/kotobase-query/src:.deps/kotobase/src:.deps/arrangement/src:.deps/prolly-tree/src:.deps/io-ipld/src:.deps/io-multiformats/src:.deps/org-ietf-cbor/src"
 
 # Pure .cljc SQL suite + .cljs-only wire-framing/message unit tests (fast, no sockets)
-nbb --classpath "$CP" bin/run_tests.cljk
+kbb --backend sci --classpath "$CP" bin/run_tests.cljk
 
 # The real cross-process Postgres-wire demo (slower -- spawns a second OS process)
-nbb --classpath "$CP" test/kotobase/pg/wire_demo.cljk
+kbb --backend sci --classpath "$CP" test/kotobase/pg/wire_demo.cljk
 ```
 
 Each `.deps/<name>` should be checked out at the SHA pinned in
@@ -201,7 +201,7 @@ Each `.deps/<name>` should be checked out at the SHA pinned in
 every one, see `.github/workflows/ci.yml`.
 
 The `:test` alias in `deps.edn` is the JVM **compat** suite for the pure
-`.cljc` core (`kotobase.pg.sql`) only (`clojure -M:test`, via
+`.cljc` core (`kotobase.pg.sql`) only (`kbb -M:test`, via
 `tools.deps` transitive git-dep resolution) — it never loads anything
 under `src/kotobase/pg/wire.cljk` (`.cljs`-only, cannot run on the JVM
 at all).
